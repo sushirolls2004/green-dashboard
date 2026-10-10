@@ -1,0 +1,21 @@
+{
+  "title": "Green Weekly",
+  "days": 7,
+  "max_per_topic": 6,
+  "language": {"hl": "en-US", "gl": "US", "ceid": "US:en"},
+  "topics": [
+    {"name": "Climate change",        "query": "climate change"},
+    {"name": "Energy transition",     "query": "energy transition OR renewable energy"},
+    {"name": "Carbon pricing",        "query": "carbon pricing OR carbon tax OR \"emissions trading\" OR CBAM"},
+    {"name": "Climate adaptation",    "query": "climate adaptation OR climate finance"},
+    {"name": "Green industrialization","query": "green hydrogen OR green steel OR \"clean manufacturing\""},
+    {"name": "Green economy",         "query": "\"green economy\" OR \"green jobs\" OR \"sustainable finance\""},
+    {"name": "Environmental economics","query": "\"environmental economics\" OR \"cost of climate change\" OR \"natural capital\""},
+    {"name": "Environment & nature",  "query": "deforestation OR biodiversity OR \"environmental policy\""}
+  ],
+  "trusted_feeds": [
+    {"name": "Carbon Brief",       "url": "https://www.carbonbrief.org/feed/"},
+    {"name": "Climate Home News",  "url": "https://www.climatechangenews.com/feed/"},
+    {"name": "Mongabay",           "url": "https://news.mongabay.com/feed/"}
+  ]
+}
