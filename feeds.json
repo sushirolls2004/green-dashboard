@@ -1,21 +1,391 @@
 {
   "title": "Green Weekly",
   "days": 7,
-  "max_per_topic": 6,
-  "language": {"hl": "en-US", "gl": "US", "ceid": "US:en"},
-  "topics": [
-    {"name": "Climate change",        "query": "climate change"},
-    {"name": "Energy transition",     "query": "energy transition OR renewable energy"},
-    {"name": "Carbon pricing",        "query": "carbon pricing OR carbon tax OR \"emissions trading\" OR CBAM"},
-    {"name": "Climate adaptation",    "query": "climate adaptation OR climate finance"},
-    {"name": "Green industrialization","query": "green hydrogen OR green steel OR \"clean manufacturing\""},
-    {"name": "Green economy",         "query": "\"green economy\" OR \"green jobs\" OR \"sustainable finance\""},
-    {"name": "Environmental economics","query": "\"environmental economics\" OR \"cost of climate change\" OR \"natural capital\""},
-    {"name": "Environment & nature",  "query": "deforestation OR biodiversity OR \"environmental policy\""}
+  "languages": {
+    "en": {
+      "hl": "en-US",
+      "gl": "US",
+      "ceid": "US:en"
+    },
+    "id": {
+      "hl": "id",
+      "gl": "ID",
+      "ceid": "ID:id"
+    }
+  },
+  "site_groups": {
+    "global": [
+      "reuters.com",
+      "apnews.com",
+      "bbc.com",
+      "theguardian.com",
+      "ft.com",
+      "bloomberg.com",
+      "cnbc.com",
+      "carbonbrief.org",
+      "climatechangenews.com",
+      "ember-energy.org",
+      "iea.org",
+      "unfccc.int",
+      "worldbank.org",
+      "imf.org",
+      "nature.com"
+    ],
+    "indonesia": [
+      "thejakartapost.com",
+      "antaranews.com",
+      "jakartaglobe.id",
+      "kompas.com",
+      "katadata.co.id",
+      "bisnis.com",
+      "kontan.co.id",
+      "cnbcindonesia.com",
+      "mongabay.co.id",
+      "tempo.co",
+      "esdm.go.id",
+      "ojk.go.id",
+      "reuters.com",
+      "ieefa.org",
+      "thediplomat.com"
+    ],
+    "data": [
+      "ember-energy.org",
+      "iea.org",
+      "irena.org",
+      "worldbank.org",
+      "imf.org",
+      "unep.org",
+      "carbonbrief.org",
+      "ieefa.org",
+      "climatepolicyinitiative.org",
+      "wri.org",
+      "climatebonds.net",
+      "icapcarbonaction.com"
+    ]
+  },
+  "display_order": [
+    "global",
+    "indonesia",
+    "data_reports"
+  ],
+  "sections": [
+    {
+      "key": "indonesia",
+      "title": "Indonesia focus",
+      "sites": "indonesia",
+      "max_per_topic": 5,
+      "note": "Indonesian and international outlets; English and Bahasa Indonesia searches.",
+      "topics": [
+        {
+          "name": "Energy transition",
+          "queries": [
+            {
+              "q": "Indonesia (\"energy transition\" OR \"renewable energy\" OR JETP OR geothermal OR solar OR \"coal retirement\")",
+              "lang": "en"
+            },
+            {
+              "q": "\"transisi energi\" OR \"energi terbarukan\" OR PLTS OR \"panas bumi\" OR \"pensiun dini PLTU\"",
+              "lang": "id"
+            }
+          ]
+        },
+        {
+          "name": "Green industrialization & economic transformation",
+          "queries": [
+            {
+              "q": "Indonesia (downstreaming OR \"electric vehicle\" OR \"battery\" OR \"green hydrogen\" OR \"green industry\" OR \"industrial decarbonization\")",
+              "lang": "en"
+            },
+            {
+              "q": "hilirisasi OR \"kendaraan listrik\" OR \"industri hijau\" OR \"baterai EV\" OR \"hidrogen hijau\"",
+              "lang": "id"
+            }
+          ]
+        },
+        {
+          "name": "Carbon pricing",
+          "queries": [
+            {
+              "q": "Indonesia (\"carbon market\" OR \"carbon tax\" OR \"carbon exchange\" OR IDXCarbon OR \"carbon credit\" OR \"emissions trading\")",
+              "lang": "en"
+            },
+            {
+              "q": "\"bursa karbon\" OR \"pajak karbon\" OR \"perdagangan karbon\" OR \"kredit karbon\"",
+              "lang": "id"
+            }
+          ]
+        },
+        {
+          "name": "Climate adaptation",
+          "queries": [
+            {
+              "q": "Indonesia (\"climate adaptation\" OR \"sea level\" OR \"Jakarta flooding\" OR \"giant sea wall\" OR \"climate resilience\" OR drought OR \"forest fires\")",
+              "lang": "en"
+            },
+            {
+              "q": "\"adaptasi iklim\" OR \"banjir rob\" OR \"kenaikan muka air laut\" OR \"ketahanan iklim\"",
+              "lang": "id"
+            }
+          ]
+        },
+        {
+          "name": "ESG, sustainable finance & green transformation",
+          "queries": [
+            {
+              "q": "Indonesia (ESG OR \"sustainable finance\" OR \"green bond\" OR \"green sukuk\" OR taxonomy OR OJK OR \"sustainability report\")",
+              "lang": "en"
+            },
+            {
+              "q": "\"keuangan berkelanjutan\" OR \"obligasi hijau\" OR \"sukuk hijau\" OR \"taksonomi hijau\" OR \"ESG\" OJK",
+              "lang": "id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "data_reports",
+      "title": "Data & reports",
+      "sites": "data",
+      "max_per_topic": 4,
+      "note": "New reports, datasets and outlooks from research and data institutions (Ember, IEA, IRENA, World Bank, IMF, UNEP, Carbon Brief, IEEFA, CPI, WRI, Climate Bonds, ICAP).",
+      "topics": [
+        {
+          "name": "Energy transition",
+          "queries": [
+            {
+              "q": "(\"energy transition\" OR \"renewable energy\" OR solar OR wind OR coal) (report OR data OR outlook OR statistics OR index OR forecast OR \"new analysis\")",
+              "lang": "en"
+            }
+          ]
+        },
+        {
+          "name": "Green industrialization & economic transformation",
+          "queries": [
+            {
+              "q": "(\"green hydrogen\" OR \"green steel\" OR \"critical minerals\" OR \"clean manufacturing\" OR \"green jobs\") (report OR data OR outlook OR statistics OR index OR forecast OR \"new analysis\")",
+              "lang": "en"
+            }
+          ]
+        },
+        {
+          "name": "Carbon pricing",
+          "queries": [
+            {
+              "q": "(\"carbon pricing\" OR \"carbon tax\" OR \"emissions trading\" OR CBAM OR \"carbon market\") (report OR data OR outlook OR statistics OR index OR forecast OR \"new analysis\")",
+              "lang": "en"
+            }
+          ]
+        },
+        {
+          "name": "Climate adaptation",
+          "queries": [
+            {
+              "q": "(\"climate adaptation\" OR \"adaptation finance\" OR \"climate finance\" OR \"loss and damage\") (report OR data OR outlook OR statistics OR index OR forecast OR \"new analysis\")",
+              "lang": "en"
+            }
+          ]
+        },
+        {
+          "name": "ESG, sustainable finance & green transformation",
+          "queries": [
+            {
+              "q": "(ESG OR \"sustainable finance\" OR \"green bonds\" OR \"transition finance\" OR \"climate disclosure\") (report OR data OR outlook OR statistics OR index OR forecast OR \"new analysis\")",
+              "lang": "en"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "global",
+      "title": "Global headlines",
+      "sites": "global",
+      "max_per_topic": 5,
+      "note": "Wire services, major newspapers, and specialist climate and energy outlets.",
+      "topics": [
+        {
+          "name": "Energy transition",
+          "queries": [
+            {
+              "q": "energy transition OR renewable energy OR \"solar power\" OR \"wind power\" OR \"coal phase-out\" OR \"energy storage\"",
+              "lang": "en"
+            }
+          ]
+        },
+        {
+          "name": "Green industrialization & economic transformation",
+          "queries": [
+            {
+              "q": "\"green industrial policy\" OR \"green hydrogen\" OR \"green steel\" OR \"clean manufacturing\" OR \"critical minerals\" OR \"battery manufacturing\" OR \"green jobs\"",
+              "lang": "en"
+            }
+          ]
+        },
+        {
+          "name": "Carbon pricing",
+          "queries": [
+            {
+              "q": "\"carbon pricing\" OR \"carbon tax\" OR \"emissions trading\" OR CBAM OR \"carbon market\" OR \"carbon credits\"",
+              "lang": "en"
+            }
+          ]
+        },
+        {
+          "name": "Climate adaptation",
+          "queries": [
+            {
+              "q": "\"climate adaptation\" OR \"climate resilience\" OR \"loss and damage\" OR \"adaptation finance\" OR \"climate finance\" OR \"sea level rise\" OR \"extreme heat\"",
+              "lang": "en"
+            }
+          ]
+        },
+        {
+          "name": "ESG, sustainable finance & green transformation",
+          "queries": [
+            {
+              "q": "ESG OR \"sustainable finance\" OR \"green bonds\" OR \"transition finance\" OR \"sustainability reporting\" OR \"climate disclosure\" OR \"net zero banking\"",
+              "lang": "en"
+            }
+          ]
+        }
+      ]
+    }
   ],
   "trusted_feeds": [
-    {"name": "Carbon Brief",       "url": "https://www.carbonbrief.org/feed/"},
-    {"name": "Climate Home News",  "url": "https://www.climatechangenews.com/feed/"},
-    {"name": "Mongabay",           "url": "https://news.mongabay.com/feed/"}
-  ]
+    {
+      "name": "Carbon Brief",
+      "url": "https://www.carbonbrief.org/feed/"
+    },
+    {
+      "name": "Climate Home News",
+      "url": "https://www.climatechangenews.com/feed/"
+    }
+  ],
+  "category_keywords": {
+    "Energy transition": [
+      "renewable",
+      "solar",
+      "wind",
+      "energy transition",
+      "coal",
+      "power",
+      "electricity",
+      "grid",
+      "oil",
+      "gas",
+      "nuclear",
+      "battery storage"
+    ],
+    "Green industrialization & economic transformation": [
+      "hydrogen",
+      "steel",
+      "manufactur",
+      "critical mineral",
+      "industrial",
+      "green jobs",
+      "supply chain",
+      "ev "
+    ],
+    "Carbon pricing": [
+      "carbon price",
+      "carbon pricing",
+      "carbon tax",
+      "ets",
+      "cbam",
+      "carbon market",
+      "carbon credit",
+      "emissions trading"
+    ],
+    "Climate adaptation": [
+      "adaptation",
+      "resilience",
+      "loss and damage",
+      "climate finance",
+      "flood",
+      "heatwave",
+      "sea level",
+      "drought",
+      "cop3"
+    ],
+    "ESG, sustainable finance & green transformation": [
+      "esg",
+      "sustainable finance",
+      "green bond",
+      "investor",
+      "bank",
+      "disclosure",
+      "net zero",
+      "transition plan"
+    ]
+  },
+  "indicator_countries": {
+    "IDN": "Indonesia",
+    "WLD": "World"
+  },
+  "indicators": [
+    {
+      "id": "EG.ELC.RNEW.ZS",
+      "label": "Renewable share of electricity output",
+      "unit": "%",
+      "tag": "Energy transition"
+    },
+    {
+      "id": "EG.FEC.RNEW.ZS",
+      "label": "Renewable share of final energy consumption",
+      "unit": "%",
+      "tag": "Energy transition"
+    },
+    {
+      "id": "EN.GHG.CO2.PC.CE.AR5",
+      "label": "CO2 emissions per person (excl. land use)",
+      "unit": " t",
+      "tag": "Emissions"
+    }
+  ],
+  "manual_highlights": {
+    "_how_to_edit": "These numbers do NOT update automatically. Edit value / as_of / source / url when you want to refresh them, or delete entries you don't want.",
+    "items": [
+      {
+        "tag": "Carbon pricing",
+        "label": "EU ETS allowance price",
+        "value": "€87.04 / t",
+        "as_of": "9 Oct 2026",
+        "source": "Trading Economics",
+        "url": "https://tradingeconomics.com/commodity/carbon"
+      },
+      {
+        "tag": "Carbon pricing",
+        "label": "CBAM certificate price, Q3 2026",
+        "value": "€82.32 / t",
+        "as_of": "5 Oct 2026",
+        "source": "European Commission",
+        "url": "https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/price-cbam-certificates_en"
+      },
+      {
+        "tag": "Energy transition",
+        "label": "Wind + solar share of global electricity (April 2026)",
+        "value": "22% (gas: 20%)",
+        "as_of": "Oct 2026",
+        "source": "Ember, via edie",
+        "url": "https://www.edie.net/wind-and-solar-helped-uk-avoid-5-9bn-in-gas-imports-during-hormuz-crisis/"
+      },
+      {
+        "tag": "Climate adaptation",
+        "label": "Adaptation finance: delivered (2023) vs yearly need",
+        "value": "$26bn vs $310-365bn",
+        "as_of": "Aug 2026 UN report",
+        "source": "SANA",
+        "url": "https://sana.sy/en/international/2348231/"
+      },
+      {
+        "tag": "Green industrialization & economic transformation",
+        "label": "Committed green hydrogen investment",
+        "value": ">$130bn, 570+ projects",
+        "as_of": "Sep 2026",
+        "source": "Hydrogen Council, via BusinessToday",
+        "url": "https://businesstoday.in/industry/infra/story/bt-big-story-india-is-building-the-green-hydrogen-capacity-but-wheres-the-demand-560241-2026-10-08"
+      }
+    ]
+  }
 }
