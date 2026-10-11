@@ -3,7 +3,7 @@
 Sources: Google News RSS (restricted to credible sites), a few direct RSS feeds,
 and the World Bank open API for indicators. Standard library only.
 Edit feeds.json to change categories, queries, sources and highlights."""
-import json, sys, html, urllib.request, urllib.parse
+import json, re, sys, html, urllib.request, urllib.parse
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
@@ -131,6 +131,28 @@ def fetch_indicators(cfg, fetcher):
     return rows
 
 
+def fetch_cbam(cfg, fetcher):
+    """Official CBAM certificate price table (European Commission), updated quarterly."""
+    c = cfg.get("cbam")
+    if not c:
+        return None
+    try:
+        text = fetcher(c["url"]).decode("utf-8", "ignore")
+        text = html.unescape(re.sub(r"<[^>]+>", " ", text))
+        text = re.sub(r"\s+", " ", text)
+        rows = re.findall(r"(Q[1-4] \d{4}) (\d{1,2} [A-Za-z]+ \d{4}) (\d+(?:\.\d+)?)", text)
+        if not rows:
+            raise ValueError("price table not found")
+        q, date, price = rows[-1]
+        prev = float(rows[-2][2]) if len(rows) > 1 else None
+        change = f" ({(float(price) / prev - 1) * 100:+.1f}% vs {rows[-2][0]})" if prev else ""
+        return {"tag": c["tag"], "label": c["label"], "value": f"€{float(price):.2f} / t",
+                "note": f"{q}, published {date}{change}", "url": c["url"], "source": "European Commission"}
+    except Exception as e:
+        print(f"[warn] CBAM price failed: {e}", file=sys.stderr)
+        return None
+
+
 # ---------- rendering ----------
 def news_card(i, tag):
     return (f'<article class="card" data-t="{E(tag)}"><span class="tag">{E(tag)}</span>'
@@ -149,6 +171,12 @@ def highlight_card(h):
     return (f'<div class="stat"><span class="tag">{E(h["tag"])}</span><h3>{E(h["label"])}</h3>'
             f'<div class="big">{E(h["value"])}</div>'
             f'<p>{E(h["as_of"])} · <a href="{E(h["url"])}" target="_blank" rel="noopener">{E(h["source"])}</a> (manual)</p></div>')
+
+
+def auto_card(h):
+    return (f'<div class="stat"><span class="tag">{E(h["tag"])}</span><h3>{E(h["label"])}</h3>'
+            f'<div class="big">{E(h["value"])}</div>'
+            f'<p>{E(h["note"])} · <a href="{E(h["url"])}" target="_blank" rel="noopener">{E(h["source"])}</a> (auto-updated)</p></div>')
 
 
 def section_html(sec, topics):
@@ -181,7 +209,7 @@ p{{margin:0}}.card p,.stat p{{color:var(--mute);font-size:13px}}.stat a{{color:v
 </style></head><body><div class="wrap">
 <h1>🌿 {title}</h1><p class="sub">Last {days} days · updated {updated}</p>
 <nav><a href="#data">Key data</a>{navlinks}</nav>
-<section id="data"><h2>Key data</h2><p class="note">Indicators update automatically from the World Bank; highlights marked (manual) only change when you edit feeds.json.</p>
+<section id="data"><h2>Key data</h2><p class="note">Cards marked (auto-updated) refresh every run; cards marked (manual) come from annual reports and only change when you edit feeds.json.</p>
 <div class="grid">{stats}</div></section>
 <h2 style="margin-top:34px">News by category</h2><div class="chips" id="chips"></div>
 {sections}
@@ -209,7 +237,11 @@ def build(cfg, fetcher=fetch):
         parts.append(h)
         total += n
         nav.append(f'<a href="#{E(key)}">{E(by_key[key]["title"])}</a>')
-    stats = [indicator_card(r) for r in fetch_indicators(cfg, fetcher)]
+    stats = []
+    cbam = fetch_cbam(cfg, fetcher)
+    if cbam:
+        stats.append(auto_card(cbam))
+    stats += [indicator_card(r) for r in fetch_indicators(cfg, fetcher)]
     stats += [highlight_card(h) for h in cfg.get("manual_highlights", {}).get("items", [])]
     page = PAGE.format(title=E(cfg["title"]), days=cfg["days"], updated=now.strftime("%d %b %Y"),
                        navlinks="".join(nav), stats="\n".join(stats), sections="\n".join(parts))
