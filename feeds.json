@@ -127,19 +127,6 @@
               "lang": "id"
             }
           ]
-        },
-        {
-          "name": "ESG, sustainable finance & green transformation",
-          "queries": [
-            {
-              "q": "Indonesia (ESG OR \"sustainable finance\" OR \"green bond\" OR \"green sukuk\" OR taxonomy OR OJK OR \"sustainability report\")",
-              "lang": "en"
-            },
-            {
-              "q": "\"keuangan berkelanjutan\" OR \"obligasi hijau\" OR \"sukuk hijau\" OR \"taksonomi hijau\" OR \"ESG\" OJK",
-              "lang": "id"
-            }
-          ]
         }
       ]
     },
@@ -185,15 +172,6 @@
               "lang": "en"
             }
           ]
-        },
-        {
-          "name": "ESG, sustainable finance & green transformation",
-          "queries": [
-            {
-              "q": "(ESG OR \"sustainable finance\" OR \"green bonds\" OR \"transition finance\" OR \"climate disclosure\") (report OR data OR outlook OR statistics OR index OR forecast OR \"new analysis\")",
-              "lang": "en"
-            }
-          ]
         }
       ]
     },
@@ -236,15 +214,6 @@
           "queries": [
             {
               "q": "\"climate adaptation\" OR \"climate resilience\" OR \"loss and damage\" OR \"adaptation finance\" OR \"climate finance\" OR \"sea level rise\" OR \"extreme heat\"",
-              "lang": "en"
-            }
-          ]
-        },
-        {
-          "name": "ESG, sustainable finance & green transformation",
-          "queries": [
-            {
-              "q": "ESG OR \"sustainable finance\" OR \"green bonds\" OR \"transition finance\" OR \"sustainability reporting\" OR \"climate disclosure\" OR \"net zero banking\"",
               "lang": "en"
             }
           ]
@@ -307,16 +276,6 @@
       "sea level",
       "drought",
       "cop3"
-    ],
-    "ESG, sustainable finance & green transformation": [
-      "esg",
-      "sustainable finance",
-      "green bond",
-      "investor",
-      "bank",
-      "disclosure",
-      "net zero",
-      "transition plan"
     ]
   },
   "indicator_countries": {
@@ -344,32 +303,8 @@
     }
   ],
   "manual_highlights": {
-    "_how_to_edit": "These numbers do NOT update automatically. Edit value / as_of / source / url when you want to refresh them, or delete entries you don't want.",
+    "_how_to_edit": "These come from annual reports, so they do NOT update automatically. Edit value / as_of / source / url when a new report is out, or delete the entries.",
     "items": [
-      {
-        "tag": "Carbon pricing",
-        "label": "EU ETS allowance price",
-        "value": "€87.04 / t",
-        "as_of": "9 Oct 2026",
-        "source": "Trading Economics",
-        "url": "https://tradingeconomics.com/commodity/carbon"
-      },
-      {
-        "tag": "Carbon pricing",
-        "label": "CBAM certificate price, Q3 2026",
-        "value": "€82.32 / t",
-        "as_of": "5 Oct 2026",
-        "source": "European Commission",
-        "url": "https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/price-cbam-certificates_en"
-      },
-      {
-        "tag": "Energy transition",
-        "label": "Wind + solar share of global electricity (April 2026)",
-        "value": "22% (gas: 20%)",
-        "as_of": "Oct 2026",
-        "source": "Ember, via edie",
-        "url": "https://www.edie.net/wind-and-solar-helped-uk-avoid-5-9bn-in-gas-imports-during-hormuz-crisis/"
-      },
       {
         "tag": "Climate adaptation",
         "label": "Adaptation finance: delivered (2023) vs yearly need",
@@ -387,5 +322,10 @@
         "url": "https://businesstoday.in/industry/infra/story/bt-big-story-india-is-building-the-green-hydrogen-capacity-but-wheres-the-demand-560241-2026-10-08"
       }
     ]
+  },
+  "cbam": {
+    "url": "https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/price-cbam-certificates_en",
+    "tag": "Carbon pricing",
+    "label": "EU carbon price: CBAM certificate (auction-based)"
   }
 }
